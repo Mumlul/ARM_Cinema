@@ -1,0 +1,16 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "trizbd", "trizbd\trizbd.csproj", "{EE7012CC-AC0F-44E0-9F25-9865BA7B31FE}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{EE7012CC-AC0F-44E0-9F25-9865BA7B31FE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EE7012CC-AC0F-44E0-9F25-9865BA7B31FE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EE7012CC-AC0F-44E0-9F25-9865BA7B31FE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EE7012CC-AC0F-44E0-9F25-9865BA7B31FE}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal

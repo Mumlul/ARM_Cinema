@@ -1,0 +1,103 @@
+<Page x:Class="trizbd.Pages.Reports"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      mc:Ignorable="d"
+      Title="Отчёты">
+
+    <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled">
+        <Grid Margin="60,50,60,50">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <StackPanel Grid.Row="0" Margin="0,0,0,20">
+                <TextBlock Text="Отчёты" Style="{StaticResource PageTitle}"/>
+                <TextBlock Text="ПРОДАЖИ • ВЫРУЧКА • ТОП ФИЛЬМОВ" Style="{StaticResource PageSubtitle}" Margin="0,10,0,0"/>
+            </StackPanel>
+
+            <Border Grid.Row="1" Style="{StaticResource CardStyle}" Margin="0,0,0,25" Padding="22">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <TextBlock Text="Период" Style="{StaticResource MonoText}" FontSize="11" Foreground="{DynamicResource TextMutedBrush}" VerticalAlignment="Center"/>
+
+                    <DatePicker x:Name="FromDp" Style="{StaticResource FormDatePicker}" Grid.Column="1" Margin="12,0,0,0"/>
+                    <TextBlock Grid.Column="2" Text="—" Style="{StaticResource MonoText}" FontSize="12" Foreground="{DynamicResource TextMutedBrush}" Margin="12,0" VerticalAlignment="Center"/>
+                    <DatePicker x:Name="ToDp" Style="{StaticResource FormDatePicker}" Grid.Column="3"/>
+
+                    <Button Grid.Column="4" Content="Сформировать" Style="{StaticResource PrimaryButtonStyle}" Padding="16,10" Margin="20,0,0,0" HorizontalAlignment="Left" Click="ApplyBtn_Click"/>
+                </Grid>
+            </Border>
+
+            <UniformGrid Grid.Row="2" Columns="3" Margin="0,0,0,25">
+                <Border Style="{StaticResource CardStyle}" Margin="0,0,25,0">
+                    <StackPanel>
+                        <TextBlock Text="ПРОДАНО" Style="{StaticResource MonoText}" FontSize="10" Foreground="{DynamicResource TextMutedBrush}"/>
+                        <TextBlock x:Name="SoldTb" Text="—" FontSize="48" FontWeight="Light" Margin="0,10,0,0">
+                            <TextBlock.Foreground>
+                                <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                                    <GradientStop Color="{StaticResource PrimaryColor}" Offset="0"/>
+                                    <GradientStop Color="{StaticResource SecondaryColor}" Offset="1"/>
+                                </LinearGradientBrush>
+                            </TextBlock.Foreground>
+                        </TextBlock>
+                    </StackPanel>
+                </Border>
+
+                <Border Style="{StaticResource CardStyle}" Margin="0,0,25,0">
+                    <StackPanel>
+                        <TextBlock Text="ВЫРУЧКА" Style="{StaticResource MonoText}" FontSize="10" Foreground="{DynamicResource TextMutedBrush}"/>
+                        <TextBlock x:Name="RevenueTb" Text="—" FontSize="48" FontWeight="Light" Margin="0,10,0,0">
+                            <TextBlock.Foreground>
+                                <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                                    <GradientStop Color="{StaticResource PrimaryColor}" Offset="0"/>
+                                    <GradientStop Color="{StaticResource SecondaryColor}" Offset="1"/>
+                                </LinearGradientBrush>
+                            </TextBlock.Foreground>
+                        </TextBlock>
+                    </StackPanel>
+                </Border>
+
+                <Border Style="{StaticResource CardStyle}">
+                    <StackPanel>
+                        <TextBlock Text="СРЕДНИЙ ЧЕК" Style="{StaticResource MonoText}" FontSize="10" Foreground="{DynamicResource TextMutedBrush}"/>
+                        <TextBlock x:Name="AvgTb" Text="—" FontSize="48" FontWeight="Light" Margin="0,10,0,0">
+                            <TextBlock.Foreground>
+                                <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                                    <GradientStop Color="{StaticResource PrimaryColor}" Offset="0"/>
+                                    <GradientStop Color="{StaticResource SecondaryColor}" Offset="1"/>
+                                </LinearGradientBrush>
+                            </TextBlock.Foreground>
+                        </TextBlock>
+                    </StackPanel>
+                </Border>
+            </UniformGrid>
+
+            <Border Grid.Row="3" Style="{StaticResource CardStyle}">
+                <StackPanel>
+                    <TextBlock Text="Топ фильмов" FontSize="20" FontWeight="SemiBold" Margin="0,0,0,20"/>
+                    <TextBlock x:Name="EmptyTb" Text="Нет данных за период" Visibility="Collapsed" Style="{StaticResource MonoText}" FontSize="12" Foreground="{DynamicResource TextMutedBrush}" Margin="0,0,0,10"/>
+
+                    <DataGrid x:Name="TopMoviesGrid" Style="{StaticResource DataGridDark}" Height="340">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="Фильм" Binding="{Binding Movie}" Width="*"/>
+                            <DataGridTextColumn Header="Билеты" Binding="{Binding Tickets}" Width="140"/>
+                            <DataGridTextColumn Header="Выручка" Binding="{Binding Revenue}" Width="160"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </StackPanel>
+            </Border>
+        </Grid>
+    </ScrollViewer>
+</Page>

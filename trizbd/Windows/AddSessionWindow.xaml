@@ -1,0 +1,97 @@
+<Window x:Class="trizbd.Windows.AddSessionWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Создание сеанса"
+        WindowStartupLocation="CenterOwner"
+        SizeToContent="WidthAndHeight"
+        ResizeMode="NoResize"
+        Background="{DynamicResource AppBackgroundBrush}">
+    <Grid Margin="24">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <StackPanel Grid.Row="0" Margin="0,0,0,18">
+            <TextBlock Text="Создание сеанса" Style="{StaticResource PageTitle}" FontSize="30"/>
+            <TextBlock Text="ВЫБЕРИТЕ ФИЛЬМ, ЗАЛ, ДАТУ И ВРЕМЯ" Style="{StaticResource PageSubtitle}" Margin="0,8,0,0"/>
+        </StackPanel>
+
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="420"/>
+                <ColumnDefinition Width="22"/>
+                <ColumnDefinition Width="320"/>
+            </Grid.ColumnDefinitions>
+
+            <!-- Форма -->
+            <Border Grid.Column="0" Style="{StaticResource CardStyle}" Padding="22">
+                <StackPanel>
+                    <TextBlock Text="Фильм" Style="{StaticResource MonoText}" FontSize="10" Foreground="{DynamicResource TextMutedBrush}"/>
+                    <ComboBox x:Name="MovieCb" Style="{StaticResource FormComboBox}" Margin="0,10,0,16"
+                              DisplayMemberPath="Title" SelectionChanged="AnyField_Changed"/>
+
+                    <TextBlock Text="Зал" Style="{StaticResource MonoText}" FontSize="10" Foreground="{DynamicResource TextMutedBrush}"/>
+                    <ComboBox x:Name="HallCb" Style="{StaticResource FormComboBox}" Margin="0,10,0,16"
+                              DisplayMemberPath="Name" SelectionChanged="AnyField_Changed"/>
+
+                    <TextBlock Text="Дата" Style="{StaticResource MonoText}" FontSize="10" Foreground="{DynamicResource TextMutedBrush}"/>
+                    <DatePicker x:Name="DateDp" Margin="0,10,0,16" SelectedDateChanged="AnyField_Changed"/>
+
+                    <TextBlock Text="Время начала (чч:мм)" Style="{StaticResource MonoText}" FontSize="10" Foreground="{DynamicResource TextMutedBrush}"/>
+                    <TextBox x:Name="TimeTb" Style="{StaticResource FormTextBox}" Margin="0,10,0,16"
+                             TextChanged="AnyField_Changed"/>
+
+                    <TextBlock Text="Цена (₽)" Style="{StaticResource MonoText}" FontSize="10" Foreground="{DynamicResource TextMutedBrush}"/>
+                    <TextBox x:Name="PriceTb" Style="{StaticResource FormTextBox}" Margin="0,10,0,8"
+                             TextChanged="AnyField_Changed"/>
+
+                    <TextBlock x:Name="HintTb" Text=""
+                               Visibility="Collapsed"
+                               FontFamily="{StaticResource FontMono}"
+                               FontSize="11"
+                               Foreground="{DynamicResource TextMutedBrush}"
+                               Margin="0,10,0,0"/>
+                </StackPanel>
+            </Border>
+
+            <!-- Подсказки -->
+            <Border Grid.Column="2" Style="{StaticResource CardStyle}" Padding="22">
+                <StackPanel>
+                    <TextBlock Text="Свободное время" FontSize="18" FontWeight="SemiBold" Margin="0,0,0,6"/>
+                    <TextBlock Text="Подсказки не ограничивают ручной ввод" Style="{StaticResource MonoText}"
+                               FontSize="10" Foreground="{DynamicResource TextMutedBrush}" Margin="0,0,0,12"/>
+
+                    <ListBox x:Name="SuggestionsLb" Height="260"
+                             SelectionChanged="SuggestionsLb_SelectionChanged">
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+                                <Border Padding="10" Margin="0,0,0,8"
+                                        Background="{DynamicResource HoverBrush}"
+                                        BorderBrush="{DynamicResource CardBorderBrush}"
+                                        BorderThickness="1"
+                                        CornerRadius="4">
+                                    <StackPanel Orientation="Horizontal">
+                                        <TextBlock Text="{Binding}" FontFamily="{StaticResource FontMono}" FontSize="14"/>
+                                    </StackPanel>
+                                </Border>
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                    </ListBox>
+
+                    <Button x:Name="UseTimeBtn"
+                            Content="Подставить время"
+                            Style="{StaticResource OutlineButtonStyle}"
+                            Margin="0,10,0,0"
+                            Click="UseTimeBtn_Click"/>
+                </StackPanel>
+            </Border>
+        </Grid>
+
+        <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,18,0,0">
+            <Button Content="Отмена" Style="{StaticResource OutlineButtonStyle}" Padding="18,10" Margin="0,0,10,0" Click="CancelBtn_Click"/>
+            <Button x:Name="SaveBtn" Content="Создать" Style="{StaticResource PrimaryButtonStyle}" Padding="18,10" Click="SaveBtn_Click"/>
+        </StackPanel>
+    </Grid>
+</Window>

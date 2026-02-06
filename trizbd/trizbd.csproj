@@ -1,0 +1,43 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <OutputType>WinExe</OutputType>
+        <TargetFramework>net8.0-windows</TargetFramework>
+        <Nullable>enable</Nullable>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <UseWPF>true</UseWPF>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <PackageReference Include="MaterialDesignColors" Version="5.3.1-ci1261" />
+      <PackageReference Include="MaterialDesignThemes" Version="5.3.1-ci1261" />
+      <PackageReference Include="Microsoft.EntityFrameworkCore" Version="9.0.10" />
+      <PackageReference Include="Microsoft.EntityFrameworkCore.Abstractions" Version="9.0.10" />
+      <PackageReference Include="Microsoft.EntityFrameworkCore.Analyzers" Version="9.0.10" />
+      <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="9.0.10">
+        <PrivateAssets>all</PrivateAssets>
+        <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+      </PackageReference>
+      <PackageReference Include="Microsoft.EntityFrameworkCore.Relational" Version="9.0.10" />
+      <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="9.0.10" />
+      <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="9.0.10">
+        <PrivateAssets>all</PrivateAssets>
+        <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+      </PackageReference>
+    </ItemGroup>
+
+  <!-- JSON-схемы посадки по залам (20x20). Копируем рядом с exe, чтобы приложение могло их читать. -->
+  <ItemGroup>
+    <Content Include="Assets\\Halls\\*.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
+  <!-- Файлы импорта фильмов (JSON). Администратор может импортировать их в БД. -->
+  <ItemGroup>
+    <Content Include="Assets\\MoviesImport\\*.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
+</Project>
